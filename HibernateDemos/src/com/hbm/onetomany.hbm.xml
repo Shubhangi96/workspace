@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<class name="com.bean.Customer" table="customer">
+		<id name="username" >
+			<generator class="assigned"></generator>
+		</id>
+
+		<property name="email" length="30"></property>
+		<list name="cList" cascade="all">
+			<key column="username"></key>
+			<index column="idx" length="30"></index>
+			<one-to-many class="com.bean.Complaint"></one-to-many>
+		</list>
+	</class>
+
+	<class name="com.bean.Complaint" table="complaint">
+		<id name="compId">
+			<generator class="increment"></generator>
+		</id>
+		<property name="cDesc" length="30"></property>
+		<property name="dateOfComp" length="30"></property>
+		<property name="status" length="30"></property>
+		<many-to-one name="customer" class="com.bean.Customer"
+			column="username"></many-to-one>
+	</class>
+</hibernate-mapping>
+        

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+        <hibernate-mapping>
+
+<class name="com.bean.Employee" table="employee">  
+
+          <id name="eid">  
+          <generator class="increment"></generator>  
+          </id>  
+          <property name="name" length="20"></property>  
+          <property name="email" length="30"></property>  
+            
+          <one-to-one name="a" cascade="all"></one-to-one>  
+          <many-to-one name="d" unique="true" cascade="all"></many-to-one>  
+          
+          </class>  
+          
+          <class name="com.bean.Address" table="address">  
+          <id name="aid">  
+          <generator class="foreign">  <!--  pk of other class is same as pk of this class but no fk -->
+          <param name="property">e</param>  
+          </generator>  
+          </id>   
+          <property name="addressLine1" length="20"></property>  
+          <property name="city" length="20"></property>  
+          <property name="state" length="20"></property>  
+          <property name="country" length="20"></property>  
+            <one-to-one name="e"></one-to-one>  
+          </class>  
+          
+          <class name="com.bean.Department">  
+          <id name="deptid">  
+          <generator class="increment"></generator>  
+          </id>  
+          <property name="name"></property>                    
+          </class>  
+          
+</hibernate-mapping>
+       
